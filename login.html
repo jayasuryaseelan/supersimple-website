@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <style>
+      .background {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        object-fit: cover;
+        pointer-events: none;
+      }
+      .main {
+        gap: 15px;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-wrap: wrap;
+        position: absolute;
+        align-content: center;
+        justify-content: center;
+      }
+
+      .no-interaction {
+        user-select: none;
+        pointer-events: none;
+      }
+
+      @media (max-width: 992px) {
+        .main {
+          transform: scale(0.5);
+        }
+      }
+
+      .form {
+        width: 248px;
+        display: flex;
+        flex-wrap: wrap;
+        transform: translate(250px, 10px);
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        transition: color 5000s ease-in-out 0s,
+          background-color 5000s ease-in-out 0s;
+      }
+      /* .btn-outline-light {
+        color: white;
+        background: transparent;
+        border-color: #ced4da;
+      }
+      .btn-outline-light:hover,
+      .btn-outline-light:not(:disabled):not(.disabled):active {
+        color: white;
+        background: #fff3;
+        border-color: #ced4da;
+      } */
+      #login {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 24px;
+        gap: 10px;
+        width: 248px;
+        height: 41px;
+        background: radial-gradient(
+          circle at top right,
+          #7d6200 0%,
+          #ffc805 100%
+        );
+        backdrop-filter: blur(24.4519px);
+        border-radius: 20px;
+        font-size: 16px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        outline: none;
+      }
+      .icon {
+        border-width: 2px;
+        border-right-width: 0;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      .field {
+        border-width: 2px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay muted loop class="background">
+      <source src="/assets/video/background.mp4" type="video/mp4" />
+    </video>
+    <div class="main no-interaction">
+      <img src="/assets/images/mainbg2.png" />
+    </div>
+    <div class="main no-interaction">
+      <img
+        src="/assets/images/frame.png"
+        style="transform: scale3d(1.014, 1.03, 1)"
+      />
+    </div>
+    <div class="main">
+      <div class="form">
+        <div style="width: 100%" class="mb-2">
+          <label class="text-white form-label" for="username">Username</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span
+                class="input-group-text icon"
+                id="inputGroup-sizing-default"
+                style="background: #0004"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  width="1em"
+                  height="1em"
+                  fill="white"
+                  class="bi bi-person"
+                >
+                  <path
+                    d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+                  /></svg
+              ></span>
+            </div>
+            <input
+              id="username"
+              type="text"
+              class="form-control field"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              style="background: #0004; color: white"
+            />
+          </div>
+        </div>
+
+        <div style="width: 100%" class="mb-4">
+          <label class="text-white form-label" for="password">Password</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span
+                class="input-group-text icon"
+                id="inputGroup-sizing-default"
+                style="background: #0004"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  width="1em"
+                  height="1em"
+                  fill="white"
+                  class="bi bi-key"
+                >
+                  <path
+                    d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"
+                  /></svg
+              ></span>
+            </div>
+            <input
+              id="password"
+              type="password"
+              class="form-control field"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              style="background: #0004; color: white"
+            />
+          </div>
+        </div>
+
+        <button id="login" type="button">Login</button>
+      </div>
+    </div>
+    <script>
+      login.onclick = async () => {
+        login.disabled = true;
+
+        const response = await fetch("/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+          }),
+        });
+
+        const json = await response.json();
+
+        if (response.ok) window.location.href = "/";
+        else alert(json.msg);
+
+        username.value = "";
+        password.value = "";
+        login.disabled = false;
+      };
+    </script>
+  </body>
+</html>

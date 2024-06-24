@@ -1,0 +1,1297 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.video-wrapper {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto; 
+    z-index: -100;
+    background-size: cover;
+}
+@media screen and (max-width: 768px) {
+
+    #fullscreenButton {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    #fullscreenButtons {
+        position: relative; /* Parent container must be positioned */
+        width: 100%; /* Full width of the container */
+        height: 100vh; /* Full viewport height */
+        background-color: rgba(0, 0, 0, 100); /* Semi-transparent background */
+        text-align: center; /* Centers horizontally */
+        z-index: 99999; 
+    }
+    
+    
+    
+    }
+    
+video {
+    width: 100%;
+    height: auto;
+}
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+.background-container {
+    position: absolute;
+    width: 866.96px;
+    height: 610px;
+    z-index: 1;
+}
+
+
+/******my changes********/
+
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .background-container {
+        transform: scale(0.5);
+    }
+    .iframe_content {
+        transform: scale(0.5);
+    }
+    video {
+        width: 100%;
+        height: 100vh; /* You might want to adjust this for landscape */
+        object-fit: cover;
+    }
+    .second-lg {
+        width: 100%;
+        max-width: 50%; /* Allowing more width in landscape */
+    }
+    .iframe_content {
+        background: unset !important;
+    }
+
+}
+.frame {
+    width: 100%;
+    height: 100%;
+}
+.copyIcon {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 45px;
+    top: 126px;
+}
+
+
+.iframe_content {
+    position: absolute;
+    width: 866.96px;
+    height: 398px;
+    background: url(../images/frame.png) no-repeat center center;
+    background-size: cover;
+    z-index: 4;
+    overflow: hidden; /* Hide overflow */
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center;
+}
+.btn-play {
+    position: absolute;
+    right: 45px;
+    bottom: 125px;
+}
+img#walletImage {
+    width: 100%;
+}
+button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 10px;
+    width: 248px;
+    height: 41px;
+    background: radial-gradient(circle at top right, #7D6200 0%, #FFC805 100%);
+    backdrop-filter: blur(24.4519px);
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 99999;
+    position: relative;
+}
+.rectangle-container {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    transition: transform 1s ease;
+    z-index: 6;
+    max-height: 356px;
+    overflow: hidden;
+ 
+}
+.status-container {
+    position: absolute;
+    top: 35px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    z-index: 5;
+}
+
+.logo {
+    position: absolute;
+    width: 69px;
+    height: 54px;
+    left: 70px;
+    top: 45px;
+    background: url(../images/logo.png) no-repeat center center;
+    background-size: cover;
+    opacity: 0.86;
+    z-index: 9999;
+    cursor: pointer;
+}
+.second-head {
+    display: flex;
+}
+#walletContent {
+    position: relative;
+    width: 377px;
+    display: none;
+}
+.scroll-container {
+    position: relative;
+    top: 15px;
+    left: 36px;
+    width: 265px;
+    height: 366px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    z-index: 4;
+    display: none;
+}
+
+.nft-title {
+    height: 27px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    display: none;
+}
+#walletImage {
+    /* position: absolute;
+    right: 571px;
+    top: 293px;
+    width: 377px; */
+    display: none;
+}
+
+.nft-content {
+    display: flex;
+    justify-content: center;
+}
+.nft-images-container {
+    width: 350px; 
+    height: 284px;
+    z-index: 9999;
+    overflow: hidden;
+    display: none;
+    position: relative;
+    top: 75px;
+}
+
+.icon-top-left {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 150px;
+    scale: 0.2;
+    height: 10%;
+    background: url(../images/back.png) no-repeat center center;
+    background-size: cover;
+    z-index: 1000;
+    display: none;
+    cursor: pointer;
+}
+.right-side-content {
+    display: none;
+    padding: 5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+}
+div#momentContainer {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+}
+.all-left-right {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.items-left {
+    position: relative;
+}
+
+div#verticalLine {
+    opacity: 0;
+}
+.items-right  #walletContent{
+    border-left: 2px solid #fff;
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+#walletContent {
+    height: 85%;
+}
+.wallet-icons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    padding-top: 10px;
+}
+
+.loai-text {
+    position: absolute;
+    width: 128px;
+    height: 25px;
+    left: 248px;
+    top: 95px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 130%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.address-text {
+    position: absolute;
+    width: 303px;
+    height: 14px;
+    left: 70px;
+    top: 125px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 130%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.center-text {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    display: none; /* 默认隐藏 */
+}
+
+
+
+@media only screen and (min-width: 768px) {
+
+    .second-lg {
+        width: 100%;
+        max-width: 33.33%;
+    }
+}
+div#nfttitle {
+    position: relative;
+    top: 50px;
+    left: 110px;
+    text-align: left;
+    width: 100%;
+    max-width: max-content;
+}
+.back-button-container {
+    position: relative;
+}
+.back-button {
+    position: absolute;
+    top: 45px;
+    left: 20px;
+    width: 110px;
+    scale: 0.2;
+    height: 40px;
+    background: url(../images/back.png) no-repeat center center;
+    background-size: cover;
+    z-index: 1000;
+    display: none; 
+    cursor: pointer;
+}
+
+.circle-image {
+    position: relative;
+    top: 20px;
+    right: 0px;
+    width: 345px;
+    scale: 0.7;
+    height: 346px;
+    background-size: cover;
+    display: none;
+    z-index: 4;
+}
+.profile-icons {
+    position: absolute;
+    left: -66%;
+    bottom: 20%;
+    top: -65%;
+}
+.profile-items {
+    display: flex;
+}
+
+.profile-left {width: 100%;max-width: 50%;}
+
+.profile-right {
+    width: 100%;
+    max-width: 50%;
+    position: relative;
+}
+#centerTags {
+    width: 25%;
+    margin-top: 35px;
+    scale: 0.9;
+    z-index: 99;
+    width: 100%;
+    max-width: 300px;
+    flex-wrap: wrap;
+}
+.human-image {
+    width: 283px;
+    height: 336px;
+    margin-top: 12%;
+    background-size: cover;
+    display: none;
+    z-index: 4;
+}
+.center-tags {
+    position: absolute;
+    top: 45%;
+    left: 139px;
+    display: none;
+}
+
+
+#status, #videoContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+#status {
+    font-size: 24px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    opacity: 0;
+}
+
+
+div#videoContainer {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: none;
+    align-items: center;
+}
+/******my changes end********/
+.background {
+    position: absolute;
+    top: 114px;
+    left: 2px;
+    width: 100%;
+    height: 63%;
+    background-size: cover;
+    z-index: 1;
+    border-radius: 64px;
+    
+}
+button:hover {
+    background-color: #ec971f;
+}
+
+
+
+button:hover {
+    background: radial-gradient(circle at top right, #7D6200, #FFD117);
+}
+.hidden {
+    display: none;
+}
+
+
+
+
+.rectangle {
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: linear-gradient(89.72deg, rgba(247, 194, 5, 0.83) -81.3%, #030406 85.29%);
+    margin-bottom: 10px; /* Add some spacing between boxes if needed */
+    width: 237px; /* Base width */
+    height: 96px; /* Base height */
+    transition: all 0.3s ease; /* Transition for resizing */
+    position: relative;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.63);
+}
+
+.rectangle:hover {
+    width: 402px; /* Enlarged width */
+    height: 127px; /* Enlarged height */
+    background: linear-gradient(89.49deg, rgba(247, 194, 5, 0.86) 0.33%, #030406 85.11%);
+    border-radius: 10px;
+ 
+}
+.rectangle:hover .text {
+    font-size: 14px;
+    line-height: 25px;
+    color: white;
+}
+.rectangle .text {
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 20px;
+    letter-spacing: -0.17px;
+    color: rgba(255, 255, 255, 0.63);
+}
+.rectangle .amount {
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.7em; /* Adjusted to scale with the font size of the rectangle */
+    line-height: 1.5em; /* Adjusted to scale with the font size of the rectangle */
+    letter-spacing: -0.17px;
+    color: rgba(255, 255, 255, 0.68);
+    margin-left: 5px; /* Add some spacing between icon and text */
+}
+
+
+.rectangle .icon {
+    width: 9px;
+    height: 9px;
+    background-size: cover;
+    position: absolute;
+    top: 48px;
+    right: 3px;
+
+}
+
+
+.rectangle .icon.coin {
+    background: url(../images/coin.png) no-repeat center center;
+    width: 100%;
+    height: 130%;
+    scale: 0.8;
+    top: -1px;
+    right: 60%;
+}
+.amount-icon-container {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#rectangle1 {
+    top: -100%; /* Start above the frame */
+}
+
+#rectangle2 {
+    top: -100%; /* Start above the frame */
+}
+
+#rectangle3 {
+    top: -100%; /* Start above the frame */
+}
+
+#rectangle4 {
+
+}
+
+
+
+.status-box {
+    box-sizing: border-box;
+    width: 220px; /* Adjusted width to fit content */
+    height: 38px;
+    background: rgba(217, 217, 217, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.33);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;/* Padding inside the box */
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.97);
+}
+
+.status-box .icon {
+    width: 21px;
+    height: 21px;
+    background-size: cover;
+}
+
+#coinIcon {
+    background: url('../images/coin.png') no-repeat center center;
+}
+
+#lungsIcon {
+    background: url('../images/lungs.png') no-repeat center center;
+    transform: scaleX(-1);
+}
+.profile-picture {
+    box-sizing: border-box;
+    width: 68px;
+    height: 68px;
+    background: url('../images/profile.png') no-repeat center center;
+    background-size: cover;
+    border: 2px solid rgba(255, 255, 255, 0.37);
+    border-radius: 50%;
+    position: relative;
+    left: -38px;
+    z-index: 1;
+    top: -6px;
+}
+
+.black-rectangle {
+    position: absolute;
+    width: 415px;
+    height: 101px;
+    left: 35px;
+    top: 247px;
+    background: rgba(23, 23, 23, 0.55);
+    border-radius: 5px;
+}
+
+.story-text {
+    position: absolute;
+    width: 376px;
+    height: 54px;
+    left: 58px;
+    top: 259px;
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 25px;
+    letter-spacing: -0.17px;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in WebKit browsers */
+}
+
+.scrollable-rectangle {
+    width: 265px;
+    height: 161px;
+    margin-bottom: 10px; /* Space between rectangles */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+}
+.image-text {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 130%;
+    color: #FFFFFF;
+    
+    padding: 2px 4px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Add border radius */
+}
+
+
+.new-elements {
+    position: relative;
+    z-index: 10; /* Adjust as necessary */
+}
+
+.history-moments {
+    position: absolute;
+    width: 143px;
+    height: 27px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 130%;
+    text-align: center;
+    color: #FFFFFF;
+    top: -136px;
+    left: 190px;
+}
+.profile-moments {
+    position: absolute;
+    width: 143px;
+    height: 27px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 130%;
+    text-align: center;
+    color: #FFFFFF;
+    top: 298px;
+    left: 1214px;
+    display: none;
+}
+
+.total-sessions, .income-moments, .loss-moments {
+    position: absolute;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 154%;
+    text-align: right;
+    color: #FFFFFF;
+}
+.logo-element {
+    width: 59px;
+    height: 49px;
+    background: url(../images/logo.png);
+    opacity: 0.86;
+    margin-left: 559%;
+    margin-top: -236%;
+}
+
+.ellipse-icon-container {
+    position: absolute;
+    margin-left: 608%;
+    margin-top: 54%;
+
+}
+.ellipse-icon-container1 {
+    position: absolute;
+    margin-left: 595%;
+    margin-top: 86%;
+
+
+}
+
+.ellipse-icon1, .ellipse-icon2 {
+    width: 19px;
+    height: 19px;
+    background-size: cover;
+}
+
+.ellipse-icon1 {
+    background: url(../images/icon1.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    margin-top: -41%;
+    margin-left: 5%;
+}
+
+.ellipse-icon2 {
+    background: url(../images/icon2.png);
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    margin-top: 8px;
+    position: absolute;
+}
+
+.ellipse-1574, .ellipse-1572 {
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    border-radius: 50%;
+    margin-top: 5px; /* Adjust spacing as needed */
+}
+
+.ellipse-1574 {
+    background: url(../images/ellipse_1574.png);
+    margin-top: -25px;
+    margin-left: -27%;
+}
+
+.ellipse-1572 {
+    background: url(../images/ellipse_1572.png);
+    margin-top: -62%;
+    z-index: -1;
+    position: absolute;
+}
+
+.total-sessions {
+    width: 116px;
+    height: 20px;
+    top: 60px;
+    left: 101px;
+}
+
+.income-moments {
+    width: 73px;
+    height: 20px;
+    top: 5px;
+    left: 27px;
+}
+
+.loss-moments {
+    width: 117px;
+    height: 32px;
+    top: 5px;
+    left: -11px;
+}
+
+.coin-icon, .business-icon {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    background-size: cover;
+}
+.loss-moments-container {
+    position: absolute;
+    width: 95px;
+    height: 34px;
+    background: rgba(217, 217, 217, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.33);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    top: -132px;
+    left: 71px;
+}
+.income-moments-container{
+    position: absolute;
+    width: 95px;
+    height: 34px;
+    background: rgba(217, 217, 217, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.33);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    top: -132px;
+    left: -65px;
+}
+.coin-icon {
+    top: 5px;
+    left: -131px;
+
+}
+.coin-icon1 {
+    top: 61px;
+    left: 261px;
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    background-size: cover;
+
+}
+.business-icon {
+    top: 4px;
+    left: 3px;
+
+}
+.returnButton {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 10px;
+    position: absolute;
+    width: 229px;
+    height: 42px;
+    left: 436%;
+    top: 93px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at top right, #7D6200 0%, #FFC805 100%);
+    backdrop-filter: blur(24.4519px);
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.returnButton:hover {
+    background: radial-gradient(circle at top right, #7D6200, #FFD117);
+}
+.profilereturnButton {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 10px;
+    position: absolute;
+    width: 229px;
+    height: 42px;
+    top: 79%;
+    left: 61%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at top right, #7D6200 0%, #FFC805 100%);
+    backdrop-filter: blur(24.4519px);
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.profilereturnButton:hover {
+    background: radial-gradient(circle at top right, #7D6200, #FFD117);
+}
+.ellipse{
+    display: none;
+}
+
+.coin-text {
+    color: white;
+    position: absolute;
+    top: 63px;
+    left: 289px;
+}
+
+/* Specific Styles for Right Side Content in bg.png */
+
+.right-side-content .university {
+    position: absolute;
+    width: 42px;
+    height: 27px;
+    left: 720px;
+    top: 42px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 130%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.right-side-content .relationship {
+    position: absolute;
+    width: 56px;
+    height: 18px;
+    left: 518px;
+    top: 248px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 130%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.right-side-content .story-description {
+    position: absolute;
+    width: 252px;
+    height: 147px;
+    left: 519px;
+    top: 78px;
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 195%;
+    text-align: right;
+    letter-spacing: -1px;
+    color: #FFFFFF;
+}
+
+.right-side-content .ellipse {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%; /* Ensure the border is circular */
+    border: 3px solid rgba(208, 208, 208, 0.38);
+}
+
+
+#ellipse1 {
+    left: 519px;
+    top: 286px;
+    background-image: url('../images/avatar1.png');
+    display: block;
+}
+
+#ellipse2 {
+    left: 577px;
+    top: 286px;
+    background-image: url('../images/avatar2.png');
+    display: block;
+}
+
+#ellipse3 {
+    left: 635px;
+    top: 286px;
+    background-image: url('../images/avatar3.png');
+    display: block;
+}
+
+#ellipse4 {
+    left: 693px;
+    top: 286px;
+    background-image: url('../images/avatar4.png');
+    display: block;
+}
+
+#ellipse5 {
+    left: 750px;
+    top: 286px;
+    background-image: url('../images/avatar5.png');
+    display: block;
+}
+
+.right-side-content .name {
+    position: absolute;
+    width: 19px;
+    height: 21px;
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 195%;
+    text-align: right;
+    letter-spacing: -1px;
+    color: #FFFFFF;
+}
+
+#name1 {
+    left: 530px;
+    top: 328px;
+}
+
+#name2 {
+    left: 588px;
+    top: 328px;
+}
+
+#name3 {
+    left: 646px;
+    top: 328px;
+}
+
+#name4 {
+    left: 704px;
+    top: 328px;
+}
+
+#name5 {
+    left: 761px;
+    top: 328px;
+}
+
+/* 新增的CSS部分 */
+.profile-icon {
+    position: absolute;
+    width: 79px;
+    height: 79px;
+    background-size: cover;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    display: none;
+}
+
+#profile1 {
+    top: 309px;
+    left: 708px;
+    z-index: 999;
+
+}
+
+#profile2 {
+    top: 368px;
+    left: 807px;
+    z-index: 999;
+
+}
+
+#profile3 {
+    top: 483px;
+    left: 807px;
+    z-index: 999;
+}
+
+#profile4 {
+    top: 538px;
+    left: 707px;
+    z-index: 999;
+}
+
+#profile5 {
+    top: 481px;
+    left: 604px;
+    z-index: 999;
+}
+
+#profile6 {
+    top: 370px;
+    left: 602px;
+    z-index: 999;
+}
+
+.profile-icon:hover {
+    transform: scale(1.5);
+}
+
+.profile-icon.active {
+    transform: scale(1.5);
+}
+
+
+.tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 30px;
+    background: rgba(217, 217, 217, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.33);
+    border-radius: 5px;
+    margin: 5px;
+}
+.tag-icon {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    margin-right: 5px;
+}
+.tag-text {
+    font-size: 14px; /* 根据需要调整 */
+    color: #FFFFFF;
+}
+.more-tag {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+
+
+.wallet-icon {
+    text-align: center;
+}
+
+.wallet-icon img {
+    width: 28px;
+    height: 28px;
+}
+
+.icon-label {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 130%;
+    color: #FFFFFF;
+    margin-top: 5px;
+}
+
+.balance-container {
+    position: absolute;
+    top: 233px;
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.balance-box {
+    width: 352px;
+    height: 47px;
+    background: rgba(217, 217, 217, 0.73);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.balance-item {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure it takes full width */
+    justify-content: space-between; /* Distribute space between items */
+}
+
+.balance-item img {
+    width: 23px; /* Adjust the size of the balance icons as needed */
+    height: 23px;
+}
+
+.balance-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%; /* Ensure it takes full width */
+}
+
+.balance-title {
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 130%;
+    text-align: left;
+    margin-left: 8px;
+    color: #FFFFFF;
+}
+
+.balance-amount {
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 130%;
+    text-align: right;
+    margin-left: 273px;
+    color: #FFFFFF;
+    margin-top: -15px;
+}
+
+.balance-value {
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 130%;
+    text-align: right;
+    color: #747474;
+    margin-left: 280px;
+    margin-top: 2px;
+}
+
+.balance-single-value {
+    font-family: 'Microsoft YaHei';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 130%;
+    text-align: right;
+    color: #747474;
+    margin-top: -11px;
+    margin-left: 9px;
+}
+.vertical-line {
+    position: absolute;
+    width: 1px;
+    height: 327.5px;
+    left: 49%;
+    top: 292px;
+    transform: translateX(-50%);
+    border: 1px solid #FFFFFF;
+    display: none;
+}
+
+/* .back-button-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px; 
+    z-index: 1000;
+} */
+
+
+
+.nft-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between images */
+    width: calc(100% - 20px); /* Adjust as necessary */
+    height: 100%; /* Ensure it takes full height of the container */
+    overflow-y: auto; /* Allow vertical scroll */
+}
+
+.nft-image {
+    position: relative;
+    width: calc(43% - 10px);
+    height: auto;
+}
+
+
+.nft-label .label-text {
+    position: absolute;
+    width: 44px;
+    height: 23px;
+    left: 75px;
+    bottom: 4px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 130%;
+    text-align: center;
+    color: #FFFFFF;
+}
+.nft-images::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in WebKit browsers */
+}
+/* Scrollbar styles */
+.nft-images::-webkit-scrollbar {
+    width: 10px;
+}
+
+.nft-images::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.nft-images::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.nft-images::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.nft-label .rectangle1 {
+    position: absolute;
+    width: 62px;
+    height: 23px;
+    left: 61px;
+    bottom: 8px;
+    background: rgba(189, 189, 189, 0.57);
+    border-radius: 5px 0px 0px 5px;
+}

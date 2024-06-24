@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Typewriter Effect</title>
+    <link rel="stylesheet" type="text/css" href="assets/file/style.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <div id="fullscreenButtons">
+      <button id="fullscreenButton">Toggle Fullscreen</button>
+    </div>
+    <div id="status">Checking orientation...</div>
+    <div id="videoContainer">
+      <img src="assets/images/rotate.gif" style="width: 100vw" />
+    </div>
+
+    <script type="module">
+      const response = await fetch("/validate");
+      const json = await response.json();
+
+      if (response.ok) alert("Logged in as " + json.user);
+      else window.location = "/login";
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function updateOrientation() {
+          var status = document.getElementById("status");
+          var fullscreenButtons = document.getElementById("fullscreenButtons");
+          var videoContainer = document.getElementById("videoContainer");
+          var overlay = document.getElementById("overlayvideo");
+
+          if (window.innerHeight > window.innerWidth) {
+            status.textContent = "Your mobile is vertical";
+            videoContainer.style.display = "flex"; // Show the video
+            overlay.style.display = "none"; // Hide the overlay
+          } else {
+            status.textContent = "Your mobile is horizontal";
+            videoContainer.style.display = "none"; // Hide the video
+            fullscreenButtons.style.display = "none"; // Hide the video
+            overlay.style.display = "block"; // Show the overlay
+          }
+        }
+
+        // Event listener for changes in orientation
+        window.addEventListener("resize", updateOrientation);
+
+        // Initial check
+        updateOrientation();
+      });
+
+      document
+        .getElementById("fullscreenButton")
+        .addEventListener("click", function () {
+          toggleFullScreen();
+          var content = document.getElementById("fullscreenButtons");
+          content.style.display = "none"; // This will hide the content div
+        });
+
+      function toggleFullScreen() {
+        var doc = window.document;
+        var docEl = doc.documentElement;
+
+        var requestFullScreen =
+          docEl.requestFullscreen ||
+          docEl.mozRequestFullScreen ||
+          docEl.webkitRequestFullScreen ||
+          docEl.msRequestFullscreen;
+        var cancelFullScreen =
+          doc.exitFullscreen ||
+          doc.mozCancelFullScreen ||
+          doc.webkitExitFullscreen ||
+          doc.msExitFullscreen;
+
+        if (
+          !doc.fullscreenElement &&
+          !doc.mozFullScreenElement &&
+          !doc.webkitFullscreenElement &&
+          !doc.msFullscreenElement
+        ) {
+          requestFullScreen.call(docEl);
+        } else {
+          cancelFullScreen.call(doc);
+        }
+      }
+    </script>
+
+    <div class="video-wrapper">
+      <video autoplay loop muted playsinline>
+        <source src="assets/video/background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="overlayvideo" id="overlayvideo">
+      <div class="overlay">
+        <div class="background-container">
+          <div
+            class="background"
+            id="mainBg"
+            style="background-image: url('assets/images/mainbg.png')"
+          ></div>
+          <div
+            class="background hidden"
+            id="storyBg"
+            style="background-image: url('assets/images/storybg.png')"
+          >
+            <div class="black-rectangle" id="black-rectangle"></div>
+            <div class="story-text" id="storyText"></div>
+          </div>
+          <div
+            class="background hidden"
+            id="bg"
+            style="background-image: url('assets/images/bg.png')"
+          ></div>
+          <div
+            class="background hidden"
+            id="profilebg"
+            style="background-image: url('assets/images/profilebg.png')"
+          ></div>
+        </div>
+
+        <div class="iframe_content">
+          <div class="frame">
+            <div class="icon-top-left" id="iconTopLeft"></div>
+            <div class="second-step">
+              <div class="second-head">
+                <div class="second-lg">
+                  <div
+                    class="logo hidden"
+                    id="logo"
+                    style="background-image: url('assets/images/logo.png')"
+                  ></div>
+                </div>
+
+                <div class="second-lg">
+                  <div class="status-container hidden" id="statusContainer">
+                    <div class="status-box" id="lifeBox">
+                      <div class="icon" id="coinIcon"></div>
+                      <span>350,365</span>
+                      <div class="icon" id="lungsIcon"></div>
+                      <span>98%</span>
+                    </div>
+                    <div class="profile-picture" id="profilePicture"></div>
+                  </div>
+                </div>
+
+                <div class="second-lg">
+                  <div
+                    class="rectangle-container hidden"
+                    id="rectangleContainer"
+                  >
+                    <div
+                      class="rectangle"
+                      id="rectangle1"
+                      style="display: none"
+                    >
+                      <div class="text" id="text1"></div>
+                      <div class="amount-icon-container">
+                        <div class="icon coin"></div>
+                        <div class="amount">-1,500LOAI</div>
+                      </div>
+                    </div>
+                    <div
+                      class="rectangle"
+                      id="rectangle2"
+                      style="display: none"
+                    >
+                      <div class="text" id="text2"></div>
+                      <div class="amount-icon-container">
+                        <div class="icon coin"></div>
+                        <div class="amount">-5,000LOAI</div>
+                      </div>
+                    </div>
+                    <div
+                      class="rectangle"
+                      id="rectangle3"
+                      style="display: none"
+                    >
+                      <div class="text" id="text3"></div>
+                    </div>
+                    <div
+                      class="rectangle"
+                      id="rectangle4"
+                      style="display: none"
+                    >
+                      <div class="text" id="text4"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="chartdiv"></div>
+
+            <div class="btn-play">
+              <button id="playButton" onclick="changeContent()">PLAY</button>
+            </div>
+
+            <div class="scroll-items">
+              <div class="scroll-container" id="scrollcontainer">
+                <div
+                  class="scrollable-rectangle"
+                  style="background-image: url('assets/images/image1.png')"
+                  data-chart="大学"
+                >
+                  <div class="image-text">大学</div>
+                </div>
+                <div
+                  class="scrollable-rectangle"
+                  style="background-image: url('assets/images/image2.png')"
+                  data-chart="实习"
+                >
+                  <div class="image-text">实习</div>
+                </div>
+                <div
+                  class="scrollable-rectangle"
+                  style="background-image: url('assets/images/image3.png')"
+                  data-chart="结婚"
+                >
+                  <div class="image-text">结婚</div>
+                </div>
+                <div
+                  class="scrollable-rectangle"
+                  style="background-image: url('assets/images/image1.png')"
+                  data-chart="大学"
+                >
+                  <div class="image-text">大学</div>
+                </div>
+                <div
+                  class="scrollable-rectangle"
+                  style="background-image: url('assets/images/image2.png')"
+                  data-chart="实习"
+                >
+                  <div class="image-text">实习</div>
+                </div>
+                <div
+                  class="scrollable-rectangle"
+                  style="background-image: url('assets/images/image3.png')"
+                  data-chart="结婚"
+                >
+                  <div class="image-text">结婚</div>
+                </div>
+              </div>
+
+              <div id="momentContainer" class="hidden">
+                <div class="new-elements">
+                  <div class="history-moments-container">
+                    <div class="history-moments">历史时刻</div>
+                    <div class="logo-element"></div>
+                    <div class="ellipse-icon-container">
+                      <div class="ellipse-icon1"></div>
+                      <div class="ellipse-1574"></div>
+                    </div>
+                    <div class="ellipse-icon-container1">
+                      <div class="ellipse-icon2"></div>
+                      <div class="ellipse-1572"></div>
+                    </div>
+                  </div>
+                  <div class="total-sessions">总经历场次：135</div>
+                  <div
+                    class="coin-icon1"
+                    style="background: url('assets/images/coin.png')"
+                  ></div>
+                  <div class="coin-text">350,365</div>
+                  <div class="income-moments-container">
+                    <div class="income-moments">收益时刻:28</div>
+                  </div>
+                  <div class="loss-moments-container">
+                    <div class="loss-moments">亏损时刻：18</div>
+                    <div
+                      class="coin-icon"
+                      style="background: url('assets/images/coins_hires.png')"
+                    ></div>
+                    <div
+                      class="business-icon"
+                      style="
+                        background: url('assets/images/business_hires.png');
+                      "
+                    ></div>
+                  </div>
+                  <button id="returnButton" class="returnButton">RETURN</button>
+                </div>
+              </div>
+
+              <div class="right-side-content" id="rightside">
+                <div class="university">大学</div>
+                <div class="relationship">人物关系</div>
+                <div class="story-description">
+                  大学时光，你遇到了一个叫李明的同学，他是你的室友。开学第一天，你们因为共同的爱好——篮球，迅速成为了朋友。一天，李明邀请你参加学校的篮球比赛，你面临两个选择：一是接受邀请，加入球队，努力训练，比赛中你们齐心协力赢得了冠军，这段经历不仅让你们的友情更加深厚，还为你赢得了许多赞誉；
+                </div>
+                <div id="ellipse1" class="ellipse"></div>
+                <div id="ellipse2" class="ellipse"></div>
+                <div id="ellipse3" class="ellipse"></div>
+                <div id="ellipse4" class="ellipse"></div>
+                <div id="ellipse5" class="ellipse"></div>
+                <div id="name1" class="name">Jack</div>
+                <div id="name2" class="name">Jack</div>
+                <div id="name3" class="name">Jack</div>
+                <div id="name4" class="name">Jack</div>
+                <div id="name5" class="name">Jack</div>
+              </div>
+            </div>
+
+            <div class="nft-all-data">
+              <div class="back-button-container">
+                <div id="backButton" class="back-button"></div>
+                <div class="nft-title" id="nfttitle">NFT资产</div>
+              </div>
+
+              <div class="all-left-right">
+                <div class="items-left">
+                  <div class="nft-images-container" id="nftimage">
+                    <div class="nft-images">
+                      <div class="nft-image">
+                        <img src="assets/images/nft_01.png" alt="NFT 1" />
+                        <div class="nft-label">
+                          <div class="rectangle1"></div>
+                          <div class="label-text">第五大道</div>
+                        </div>
+                      </div>
+
+                      <div class="nft-image">
+                        <img src="assets/images/nft_02.png" alt="NFT 2" />
+                        <div class="nft-label">
+                          <div class="rectangle1"></div>
+                          <div class="label-text">第五大道</div>
+                        </div>
+                      </div>
+
+                      <div class="nft-image">
+                        <img src="assets/images/nft_03.png" alt="NFT 3" />
+                        <div class="nft-label">
+                          <div class="rectangle1"></div>
+                          <div class="label-text">第五大道</div>
+                        </div>
+                      </div>
+
+                      <div class="nft-image">
+                        <img src="assets/images/nft_04.png" alt="NFT 4" />
+                        <div class="nft-label">
+                          <div class="rectangle1"></div>
+                          <div class="label-text">第五大道</div>
+                        </div>
+                      </div>
+
+                      <div class="nft-image">
+                        <img src="assets/images/nft_05.png" alt="NFT 5" />
+                        <div class="nft-label">
+                          <div class="rectangle1"></div>
+                          <div class="label-text">第五大道</div>
+                        </div>
+                      </div>
+
+                      <div class="nft-image">
+                        <img src="assets/images/nft_06.png" alt="NFT 6" />
+                        <div class="nft-label">
+                          <div class="rectangle1"></div>
+                          <div class="label-text">第五大道</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="items-right">
+                  <div id="walletContent">
+                    <img
+                      id="walletImage"
+                      src="assets/images/wallet.png"
+                      class="walletImage"
+                    />
+
+                    <div class="loai-text">120,054 LOAI</div>
+
+                    <div class="address-text">
+                      7xPD3bGXxmvYoP9ZhEkTijNWYFAG9LEpYKvHYakvQUeS
+                    </div>
+
+                    <img
+                      id="copyIcon"
+                      src="assets/images/copy.png"
+                      class="copyIcon"
+                    />
+
+                    <div class="wallet-icons">
+                      <div class="wallet-icon">
+                        <img src="assets/images/wallet_01.png" alt="转账" />
+                        <div class="icon-label">转账</div>
+                      </div>
+                      <div class="wallet-icon">
+                        <img src="assets/images/wallet_02.png" alt="收款" />
+                        <div class="icon-label">收款</div>
+                      </div>
+                      <div class="wallet-icon">
+                        <img src="assets/images/wallet_03.png" alt="质押" />
+                        <div class="icon-label">质押</div>
+                      </div>
+                      <div class="wallet-icon">
+                        <img src="assets/images/wallet_04.png" alt="管理" />
+                        <div class="icon-label">管理</div>
+                      </div>
+                      <div class="wallet-icon">
+                        <img src="assets/images/wallet_05.png" alt="NFT" />
+                        <div class="icon-label">NFT</div>
+                      </div>
+                      <div class="wallet-icon">
+                        <img src="assets/images/wallet_06.png" alt="提案" />
+                        <div class="icon-label">提案</div>
+                      </div>
+                    </div>
+
+                    <div class="balance-container">
+                      <div class="balance-box">
+                        <div class="balance-item">
+                          <img src="assets/images/wallet_coin.png" alt="LOAI" />
+                          <div class="balance-text">
+                            <div class="balance-title">LOAI</div>
+                            <div class="balance-amount">120,054</div>
+                            <div class="balance-value">$120,054</div>
+                            <div class="balance-single-value">$1</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="balance-box">
+                        <div class="assets/images/balance-item">
+                          <img src="assets/images/wallet_sola.png" alt="SOLA" />
+                          <div class="balance-text">
+                            <div class="balance-title">SOLA</div>
+                            <div class="balance-amount">0</div>
+                            <div class="balance-value">$0</div>
+                            <div class="balance-single-value">$0</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-data">
+              <div class="profile-iner">
+                <div class="profilehead">
+                  <div class="profile-moments" id="profilemoments">
+                    角色属性
+                  </div>
+                </div>
+
+                <div class="profile-items">
+                  <div class="profile-left">
+                    <div
+                      class="circle-image"
+                      id="circleImage"
+                      style="background-image: url('assets/images/circle.png')"
+                    ></div>
+
+                    <div class="profile-icons">
+                      <div
+                        class="profile-icon"
+                        id="profile1"
+                        style="
+                          background-image: url('assets/images/profile1.png');
+                        "
+                      ></div>
+                      <div
+                        class="profile-icon"
+                        id="profile2"
+                        style="
+                          background-image: url('assets/images/profile2.png');
+                        "
+                      ></div>
+                      <div
+                        class="profile-icon"
+                        id="profile3"
+                        style="
+                          background-image: url('assets/images/profile3.png');
+                        "
+                      ></div>
+                      <div
+                        class="profile-icon"
+                        id="profile4"
+                        style="
+                          background-image: url('assets/images/profile4.png');
+                        "
+                      ></div>
+                      <div
+                        class="profile-icon"
+                        id="profile5"
+                        style="
+                          background-image: url('assets/images/profile5.png');
+                        "
+                      ></div>
+                      <div
+                        class="profile-icon"
+                        id="profile6"
+                        style="
+                          background-image: url('assets/images/profile6.png');
+                        "
+                      ></div>
+                    </div>
+
+                    <div class="center-text" id="centerText">意志:156</div>
+                  </div>
+
+                  <div class="profile-right">
+                    <div
+                      class="human-image"
+                      id="humanImage"
+                      style="background-image: url('assets/images/human.png')"
+                    ></div>
+
+                    <div class="center-tags" id="centerTags">
+                      <!-- 标签模板 -->
+                      <div class="tag" id="tag1">
+                        <div class="tag-icon" id="icon1"></div>
+                        <div class="tag-text" id="text1"></div>
+                      </div>
+                      <div class="tag" id="tag2">
+                        <div class="tag-icon" id="icon2"></div>
+                        <div class="tag-text" id="text2"></div>
+                      </div>
+                      <div class="tag" id="tag3">
+                        <div class="tag-icon" id="icon3"></div>
+                        <div class="tag-text" id="text3"></div>
+                      </div>
+                      <div class="tag" id="tag4">
+                        <div class="tag-icon" id="icon4"></div>
+                        <div class="tag-text" id="text4"></div>
+                      </div>
+                      <div class="tag" id="tag5">
+                        <div class="tag-icon" id="icon5"></div>
+                        <div class="tag-text" id="text5"></div>
+                      </div>
+                      <div class="tag more-tag" id="moreTag">
+                        <div class="tag-text">More</div>
+                      </div>
+                    </div>
+
+                    <button
+                      id="profilereturnButton"
+                      class="profilereturnButton"
+                    >
+                      RETURN
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="verticalLine" class="vertical-line"></div>
+
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="assets/file/script.js?nocache"></script>
+  </body>
+</html>
